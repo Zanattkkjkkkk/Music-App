@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Music App',
       theme: ThemeData(
       ),
       home: const MyHomePage(title: ''),
@@ -36,12 +36,12 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-
+  double duration=0;
   @override
   Widget build(BuildContext context) {
     String imageLink = "";
 
-    double duration=0;
+
 
     return Scaffold(
       appBar: AppBar(
@@ -65,19 +65,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(fontSize: 75, fontWeight: FontWeight.w900)),
             Text('The Weeknd',
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600)),
-            Icon(Icons.pause_circle_outline_rounded, size: 80,),
+
             Slider(
-              value: duration,
+
+              activeColor: Colors.indigo[900] , //o que já passou
+              inactiveColor: Colors.blueGrey, // o que ainda não passou
+              //secondaryActiveColor: Colors.blue, // as divisions que já passaram
+              thumbColor: Colors.blue[900], //a bolinha
+              value: duration.toDouble(),
               min: 0,
-              max: 180,
-              onChanged: (value) {
-                duration = value;
-                setState(() {});},
+              max: 100,
+              label: "$duration",
+              //divisions: 50,
+              onChanged: (double newRating) {
+                setState(() => duration = newRating);},
               allowedInteraction: SliderInteraction.tapAndSlide,
             ),
-            Text('00:23/02:34', style: TextStyle(fontWeight: FontWeight.w500),),
+            Icon(Icons.pause_circle_outline_rounded, size: 80,),
+            Text(
+            duration.toString(),style: TextStyle(fontWeight: FontWeight.w600),
+            ),
+              ],
 
-          ],
         ),
       ),
     );
