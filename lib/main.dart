@@ -45,36 +45,44 @@ class _MyHomePageState extends State<MyHomePage> {
     String imageLink = "";
 
     return Scaffold(
+      backgroundColor: Colors.black87,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        backgroundColor: Colors.black87,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           //crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(
-                height: 300,
-                child: Image.network(
-                    "https://pbs.twimg.com/media/FTm0CdcX0AENo8w?format=jpg&name=360x360")),
-            Text('Starboy',
-                style: TextStyle(fontSize: 75, fontWeight: FontWeight.w900)),
+            Row(
+              children: [
+                SizedBox(
+                    height: 300,
+                    child: Image.asset(
+                        "images/theweeknd.jpg"),),
+              ],
+            ),
+            Row(
+              children: [
+                Text('Starboy',
+                    style: TextStyle(fontSize: 75, fontWeight: FontWeight.w900, color: Colors.grey),),
+              ],
+            ),
             Text('The Weeknd',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600)),
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600,color: Colors.grey)),
             Slider(
               divisions: _musicDuration.round(),
-              activeColor: Colors.indigo[900],
+              activeColor: Colors.blueGrey,
               //o que já passou
-              inactiveColor: Colors.blueGrey,
+              inactiveColor: Colors.grey,
               // o que ainda não passou
               //secondaryActiveColor: Colors.blue, // as divisions que já passaram
-              thumbColor: Colors.blue[900],
+              thumbColor: Colors.black,
               //a bolinha
               value: _duration.toDouble(),
               min: 0,
               max: 100,
-              label: "$_duration",
+              //label: "$_duration",
               //divisions: 50,
               onChanged: (double newRating) {
                 setState(() => _duration = newRating);
@@ -82,12 +90,12 @@ class _MyHomePageState extends State<MyHomePage> {
               allowedInteraction: SliderInteraction.tapAndSlide,
             ),
             Icon(
-              Icons.pause_circle_outline_rounded,
+              Icons.pause_circle_outline_rounded,color: Colors.grey,
               size: 80,
             ),
             Text(
-              Utils.formatTimeMMSS(_duration.round()) + '/' + _musicDuration.toString(),
-              style: TextStyle(fontWeight: FontWeight.w600),
+              Utils.formatTimeMMSS(_duration.round()) + ' / ' + Utils.formatTimeMMSS( _musicDuration.round()),
+              style: TextStyle(fontWeight: FontWeight.w600, color: Colors.grey),
             ),
           ],
         ),
